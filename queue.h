@@ -29,7 +29,7 @@ typedef struct
 /*
  * Fonction de creation de file
  */
-queue_t createQueue(size_t size, queue_t ** queue);
+queue_t * createQueue(size_t size);
 
 /*
  * Fonction pour emfiler un element
