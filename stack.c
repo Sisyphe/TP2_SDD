@@ -24,12 +24,12 @@ stack_t * createStack(size_t capacity)
     return stack;
 }
 
-int isEmpty(stack_t stack)
+int isStackEmpty(stack_t stack)
 {
     return !stack.size;
 }
 
-int isFull(stack_t stack)
+int isStackFull(stack_t stack)
 {
     return stack.size>=stack.capacity;
 }
@@ -38,9 +38,9 @@ stack_item_t * popStack(stack_t * stack)
 {
     stack_item_t * item=0;
 
-    if(!isEmpty(*stack))
+    if(!isStackEmpty(*stack))
     {
-        (*item)=stack->head[stack->topIndex];
+        item=stack->head+stack->topIndex;
 
         --(stack->size);
         --(stack->topIndex);
@@ -53,7 +53,7 @@ int pushStack(stack_t * stack, stack_item_t item)
 {
     int exit;
 
-    if(isFull(*stack))
+    if(isStackFull(*stack))
     {
         exit=FAIL;
     }

@@ -24,8 +24,8 @@ typedef struct
 
 stack_t * createStack(size_t capacity);
 
-int isEmpty(stack_t stack);
-int isFull(stack_t stack);
+int isStackEmpty(stack_t stack);
+int isStackFull(stack_t stack);
 
 stack_item_t * popStack(stack_t * stack);
 int pushStack(stack_t * stack, stack_item_t item);
