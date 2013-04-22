@@ -11,8 +11,8 @@ EXE = tp2
 all: $(EXE)
 
 # Liste des programmes
-tp2: main.o queue.o
-#stack.o: stack.c stack.h tools.h
+tp2: main.o stack.o queue.o
+stack.o: stack.c stack.h tools.h
 queue.o: queue.c queue.h tools.h
 
 #Compilation Exe
