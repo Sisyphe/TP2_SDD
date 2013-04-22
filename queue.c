@@ -45,7 +45,7 @@ queue_t * createQueue(int size)
  */
 int pushQueue(queue_t * queue, queueItem_t item)
 {
-	int error = 0;
+	int error = 1;
 	
 	if (! isFull(queue))
 	{
@@ -61,7 +61,7 @@ int pushQueue(queue_t * queue, queueItem_t item)
 		}
 		
         queue->nbElement++;
-		error = 1;
+		error = 0;
 	}
 	
 	return error;
@@ -115,33 +115,39 @@ int isFull(queue_t * queue)
 void printQueue(queue_t * queue)
 {
 	unsigned int index = queue->indexStart;
+    unsigned int nbElementNotPrinted = queue->nbElement;
 	
-    printf("\n*** File ***\n");
+    printf("\n*** File ***\n\n");
+    
+    printf("indexStart : %d\n", queue->indexStart);
+    printf("indexEnd : %d\n", queue->indexEnd);
+    printf("size : %d\n", queue->size);
+    printf("nbElement : %d\n", queue->nbElement);
+    printf("isFull : %s\n", (isFull(queue)?"TRUE":"FALSE"));
+    printf("\n");
     
     if (isEmpty(queue))
-        printf("File vide\n");
-    
-    printf("indexStart : %d \nindexEnd : %d \nsize : %d \nnbElement : %d\n", queue->indexStart, queue->indexEnd, queue->size, queue->nbElement);
-    
-	while (index != queue->indexEnd)
-	{
-		printf("%d - %d\n", index, queue->items[index]);
-		if (index + 1 % queue->size == 0)
-		{
-			index = 0;
-        }
-		else
-		{
-			index++;
-		}
-	}
-    
-    index = 0;
-    printf("|");
-    while (index < queue->size)
     {
-        printf(" %d |", queue->items[index]);
-        index++;
+        printf("File vide\n");
     }
-    printf("\n");
+    else
+    {
+        printf("File : |");
+        while (nbElementNotPrinted > 0)
+        {
+            printf(" %d (%d) |", queue->items[index], index);
+            
+            if ((index+1) % queue->size == 0)
+            {
+                index = 0;
+            }
+            else
+            {
+                index++;
+            }
+            
+            nbElementNotPrinted--;
+        }
+        printf("\n");
+    }
 }
