@@ -21,15 +21,16 @@ typedef int queueItem_t;
 typedef struct
 {
 	queueItem_t * items;
-	size_t size;
+	int size;
 	unsigned int indexStart;
 	unsigned int indexEnd;
+    unsigned int nbElement;
 } queue_t;
 
 /*
  * Fonction de creation de file
  */
-queue_t * createQueue(size_t size);
+queue_t * createQueue(int size);
 
 /*
  * Fonction pour emfiler un element
@@ -39,7 +40,7 @@ int pushQueue(queue_t * queue, queueItem_t item);
 /*
  * Fonction pour defiler un element
  */
-int popQueue(queue_t * queue, queueItem_t ** item);
+queueItem_t * popQueue(queue_t * queue);
 
 /*
  * Fonction pour verifier si la file est vide

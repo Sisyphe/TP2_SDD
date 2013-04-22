@@ -7,23 +7,29 @@
  * 
  */
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <strings.h>
+
+#include "queue.h"
+
 /*
  * Fonction de creation de file
  */
-queue_t * createQueue(size_t size)
+queue_t * createQueue(int size)
 {
-	queue = (queue_t) malloc(sizeof(queue_t));
+	queue_t * queue = (queue_t *) malloc(sizeof(queue_t));
 	
 	if (queue)
 	{
-		queue->items = (queueItem_t) malloc(sizeof(queueItem_t)*size);
+		queue->items = (queueItem_t *) malloc(sizeof(queueItem_t)*size);
 		
 		if (queue->items)
 		{
 			queue->size = size;
 			queue->indexStart = 0;
 			queue->indexEnd = 0;
-			error = SUCCESS;
+            queue->nbElement = 0;
 		}
 		else
 		{
@@ -39,20 +45,23 @@ queue_t * createQueue(size_t size)
  */
 int pushQueue(queue_t * queue, queueItem_t item)
 {
-	int error = FAIL;
+	int error = 0;
 	
 	if (! isFull(queue))
 	{
 		queue->items[queue->indexEnd] = item;
-		if (queue->indexEnd + 1 % queue->size == 0)
+        
+		if ((queue->indexEnd+1) % queue->size == 0)
 		{
 			queue->indexEnd = 0;
+        }
 		else
 		{
 			queue->indexEnd++;
 		}
 		
-		error = SUCCESS;
+        queue->nbElement++;
+		error = 1;
 	}
 	
 	return error;
@@ -67,15 +76,18 @@ queueItem_t * popQueue(queue_t * queue)
 	
 	if (! isEmpty(queue))
 	{
-		item = queue->items[indexStart];
+		item = &queue->items[queue->indexStart];
 		
-		if (queue->indexStart + 1 % queue->size == 0)
+		if ((queue->indexStart+1) % queue->size == 0)
 		{
 			queue->indexStart = 0;
+        }
 		else
 		{
 			queue->indexStart++;
 		}
+        
+        queue->nbElement--;
 	}
 	
 	return item;
@@ -86,7 +98,7 @@ queueItem_t * popQueue(queue_t * queue)
  */
 int isEmpty(queue_t * queue)
 {
-	return queue->indexStart == queue->indexEnd;
+	return queue->nbElement == 0;
 }
 
 /*
@@ -94,7 +106,7 @@ int isEmpty(queue_t * queue)
  */
 int isFull(queue_t * queue)
 {
-	return (queue->indexStart == (queue->indexEnd%queue->size)+1 ;
+	return queue->nbElement == queue->size;
 }
 
 /*
@@ -102,17 +114,34 @@ int isFull(queue_t * queue)
  */
 void printQueue(queue_t * queue)
 {
-	unsigned int index = indexStart;
+	unsigned int index = queue->indexStart;
 	
-	while (index != indexEnd)
+    printf("\n*** File ***\n");
+    
+    if (isEmpty(queue))
+        printf("File vide\n");
+    
+    printf("indexStart : %d \nindexEnd : %d \nsize : %d \nnbElement : %d\n", queue->indexStart, queue->indexEnd, queue->size, queue->nbElement);
+    
+	while (index != queue->indexEnd)
 	{
 		printf("%d - %d\n", index, queue->items[index]);
 		if (index + 1 % queue->size == 0)
 		{
 			index = 0;
+        }
 		else
 		{
 			index++;
 		}
 	}
+    
+    index = 0;
+    printf("|");
+    while (index < queue->size)
+    {
+        printf(" %d |", queue->items[index]);
+        index++;
+    }
+    printf("\n");
 }

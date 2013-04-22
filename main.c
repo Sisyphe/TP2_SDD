@@ -1,9 +1,11 @@
 #include <stdio.h>
-#include "stack.h"
+#include "queue.h"
 
 int main()
 {
-    stack_t * stack=createStack(10);
-    printStack(*stack);
+    queue_t * queue = createQueue(10);
+    
+    printQueue(queue);
+    
     return 0;
 }
