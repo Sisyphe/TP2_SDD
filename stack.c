@@ -34,16 +34,16 @@ int isStackFull(stack_t stack)
     return stack.size>=stack.capacity;
 }
 
-stack_item_t * popStack(stack_t * stack)
+stack_item_t popStack(stack_t * stack)
 {
-    stack_item_t * item=0;
+    stack_item_t item;
 
     if(!isStackEmpty(*stack))
     {
-        item=stack->head+stack->topIndex;
-
         --(stack->size);
         --(stack->topIndex);
+
+        item=*(stack->head+stack->topIndex);
     }
 
     return item;
