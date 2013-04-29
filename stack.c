@@ -1,3 +1,14 @@
+/**
+ * @file stack.c
+ * 
+ * @author Gerald lelong / Noel Martignoni
+ * @date 2013-04-16
+ *
+ * @brief
+ * Implemente les fonctions de base de manipulation
+ * des piles.
+*/
+
 #include "stack.h"
 #include <stdio.h>
 
@@ -11,9 +22,8 @@ stack_t * createStack(size_t capacity)
 
         if(stack->head)
         {
-            stack->size=0;
             stack->capacity=capacity;
-            stack->topIndex=0;
+            stack->topIndex=-1;
         }
         else
         {
@@ -26,12 +36,12 @@ stack_t * createStack(size_t capacity)
 
 int isStackEmpty(stack_t stack)
 {
-    return !stack.size;
+    return stack.topIndex==-1;
 }
 
 int isStackFull(stack_t stack)
 {
-    return stack.size>=stack.capacity;
+    return stack.topIndex+1>=(int)stack.capacity;
 }
 
 stack_item_t popStack(stack_t * stack)
@@ -40,10 +50,8 @@ stack_item_t popStack(stack_t * stack)
 
     if(!isStackEmpty(*stack))
     {
-        --(stack->size);
-        --(stack->topIndex);
-
         item=*(stack->head+stack->topIndex);
+        --stack->topIndex;
     }
 
     return item;
@@ -59,10 +67,8 @@ int pushStack(stack_t * stack, stack_item_t item)
     }
     else
     {
+        ++stack->topIndex;
         *(stack->head+stack->topIndex)=item;
-
-        ++(stack->size);
-        ++(stack->topIndex);
 
         exit=SUCCESS;
     }
@@ -72,11 +78,11 @@ int pushStack(stack_t * stack, stack_item_t item)
 
 void printStack(stack_t stack)
 {
-    unsigned int i;
+    int i;
 
-    printf("%d items of %d in the stack\n", (int)stack.size, (int)stack.capacity);
+    printf("%d items of %d in the stack\n", stack.topIndex+1, (int)stack.capacity);
 
-    for(i=0;i<stack.size;++i)
+    for(i=0;i<=stack.topIndex;++i)
     {
         printf("Item %d: %d\n",i,*(stack.head+i));
     }
