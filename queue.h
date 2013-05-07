@@ -21,7 +21,7 @@ typedef int queueItem_t;
 typedef struct
 {
 	queueItem_t * items;
-	int size;
+	unsigned int size;
 	unsigned int indexStart;
 	unsigned int indexEnd;
     unsigned int nbElement;
