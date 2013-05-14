@@ -46,6 +46,12 @@ node_t * initNode(tree_item_t item);
  */
 int addChild(node_t * node, tree_item_t item);
 
+/**
+ * @brief Ajoute un frere 'item' au noeud 'Node'.
+ * @param node le noeud auquel on veut ajouter un frere
+ * @param item l'objet à ajouter à l'arbre
+ * @return un code d'erreur de type errorCst
+ */
 int addSibling(node_t * node, tree_item_t item);
 
 void printTree(node_t * node);
