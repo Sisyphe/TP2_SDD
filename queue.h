@@ -1,19 +1,21 @@
 /*
  * @author Gerald Lelong / Noel Martignoni
  * @date 2013-04-16
- * 
+ *
  * @file queue.h
- * Definit les fonctions de base de manipulation 
+ * Definit les fonctions de base de manipulation
  * des files
  */
 
 #ifndef QUEUE_H
 #define QUEUE_H
 
+#include "tree.h"
+
 /*
  * @typedef Element de la file
  */
-typedef int queueItem_t;
+typedef node_t* queueItem_t;
 
 /*
  * @typedef Structure de la file
