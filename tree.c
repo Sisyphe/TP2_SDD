@@ -1,4 +1,4 @@
-/*
+/**
  * @author Gerald Lelong / Noel Martignoni
  * @date 2013-04-16
  *
@@ -6,12 +6,92 @@
  * @brief fichier d'entete de gestion des arbres
  *
  */
+ 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 #include "tree.h"
 #include "tools.h"
-#include <stdlib.h>
-#include <stdio.h>
 #include "queue.h"
+#include "stack.h"
+
+void buildTree(node_t ** dico, char * treeString)
+{
+	stack_t * stack = createStack(50);
+	
+	node_t * currentNode = *dico;
+	
+	int index = 0;
+	
+	while (treeString[index] != '\0')
+	{		
+		
+		if (isOpenedParanthese(treeString[index]))
+		{
+			index++; /* Car suivant */
+			
+			/* addChild */			
+			addChild(currentNode, treeString[index]);
+			
+			/* empiler */
+			pushStack(stack, currentNode);
+		}
+		else if (isClosedParanthese(treeString[index]))
+		{
+			
+			/* depiler */
+			currentNode = popStack(stack);
+			
+			if (! isClosedParanthese(treeString[index]))
+			{
+				index++;
+				
+				/* addSibling */
+				addSibling(currentNode, treeString[index]);
+			}
+		}
+		else if (isComma(treeString[index]))
+		{
+			index++;
+	
+			/* addSibling */
+			addSibling(currentNode, treeString[index]);
+		}
+
+		index++;
+		
+	}
+}
+
+int isOpenedParanthese(char car)
+{
+	return car == '(';
+}
+
+int isClosedParanthese(char car)
+{
+	return car == ')';
+}
+
+int isComma(char car)
+{
+	return car == ',';
+}
+
+void insertWord(char * word)
+{
+	unsigned int index = 0;
+	unsigned int wordSize = strlen(word);
+	
+	while (index < wordSize)
+	{
+		printf("%c\n", word[index]);
+		index++;
+	}
+	
+	
+}
 
 node_t * createNode()
 {

@@ -1,4 +1,4 @@
-dico a integrer a tree
+/*dico a integrer a tree*/
 
 void buildTree()
 {
@@ -42,7 +42,7 @@ void buildTree()
 
 		index++;
 		
-	}
+	}+
 }
 
 int isOpenedParanthese(char car)
@@ -58,4 +58,18 @@ int isClosedParanthese(char car)
 int isComma(char car)
 {
 	return car == ',';
+}
+
+void insertWord(char * word)
+{
+	unsigned int index = 0;
+	unsigned int wordSize = strlen(word);
+	
+	while (index < wordSize)
+	{
+		printf("%c\n", word[index]);
+		index++;
+	}
+	
+	
 }
