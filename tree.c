@@ -6,18 +6,22 @@
  * @brief fichier d'entete de gestion des arbres
  *
  */
+ 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 #include "tree.h"
 #include "tools.h"
-#include <stdlib.h>
-#include <stdio.h>
 #include "queue.h"
+#include "stack.h"
 
-void buildTree()
+void buildTree(node_t ** dico, char * treeString)
 {
 	stack_t * stack = createStack(50);
 	
-	char * treeString = "(a(b(a(T)i(m(E)))))";
+	node_t * currentNode = *dico;
+	
 	int index = 0;
 	
 	while (treeString[index] != '\0')
@@ -27,23 +31,24 @@ void buildTree()
 		{
 			index++; /* Car suivant */
 			
-			/* addChild */
-			printf("empile %c \n", treeString[index]);
+			/* addChild */			
+			addChild(currentNode, treeString[index]);
 			
 			/* empiler */
-			pushStack(stack, treeString[index]);
+			pushStack(stack, currentNode);
 		}
 		else if (isClosedParanthese(treeString[index]))
 		{
 			
 			/* depiler */
-			printf("depile %c\n", popStack(stack));
+			currentNode = popStack(stack);
 			
 			if (! isClosedParanthese(treeString[index]))
 			{
 				index++;
 				
 				/* addSibling */
+				addSibling(currentNode, treeString[index]);
 			}
 		}
 		else if (isComma(treeString[index]))
@@ -51,11 +56,12 @@ void buildTree()
 			index++;
 	
 			/* addSibling */
+			addSibling(currentNode, treeString[index]);
 		}
 
 		index++;
 		
-	}+
+	}
 }
 
 int isOpenedParanthese(char car)
