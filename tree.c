@@ -92,6 +92,8 @@ void printTree(node_t * node)
     int exit = 0;
     queue_t * queue = createQueue(100);
 
+    printf("\n>>> PRINT TREE <<<\n\n");
+
     while(!exit)
     {
         while(node)
@@ -103,10 +105,19 @@ void printTree(node_t * node)
 
         if(!isEmpty(queue))
         {
-            printf("\n");
-            node = (*popQueue(queue))->child;
+            node = *popQueue(queue);
+            if(node->child)
+            {
+                if(node->child->sibling)
+                    printf("\nChildren of %c: \n", node->item);
+                else
+                    printf("\nChild of %c: \n", node->item);
+            }
+            node = node->child;
         }
 
         else exit = 1;
     }
+
+    printf("\n");
 }
