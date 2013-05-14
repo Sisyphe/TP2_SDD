@@ -55,6 +55,8 @@ int isComma(char car);
  */
 void insertWord(char * word);
 
+void printDictionnary(node_t * dico);
+
 /**
  * @brief Initialise une structure de noeud.
  * @return le noeud cree

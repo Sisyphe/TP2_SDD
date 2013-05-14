@@ -93,6 +93,30 @@ void insertWord(char * word)
 
 }
 
+void printDictionnary(node_t * dico)
+{
+    stack_t * stack = createStack(100);
+    node_t * node = dico->child;
+    int i;
+
+    while(node)
+    {
+        pushStack(stack, node);
+
+        if(node->child)
+        {
+            node = node->child;
+        }
+        else
+        {
+            for(i = 0; i < stack->top; ++i)
+            {
+                //TODO print stack content
+            }
+        }
+    }
+}
+
 node_t * createNode()
 {
     node_t * node = malloc(sizeof(node_t));
