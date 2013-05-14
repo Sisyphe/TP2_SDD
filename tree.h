@@ -26,6 +26,36 @@ typedef struct node
 } node_t;
 
 /**
+ * @brief construit un arbre a partir d'une chaine
+ * @return 
+ */
+void buildTree();
+
+/**
+ * @brief 
+ * @return 
+ */
+int isOpenedParanthese(char car);
+
+/**
+ * @brief 
+ * @return 
+ */
+int isClosedParanthese(char car);
+
+/**
+ * @brief 
+ * @return 
+ */
+int isComma(char car);
+
+/**
+ * @brief 
+ * @return 
+ */
+void insertWord(char * word);
+
+/**
  * @brief Initialise une structure de noeud.
  * @return le noeud cree
  */
