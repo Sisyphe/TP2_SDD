@@ -21,6 +21,7 @@ void buildTree(node_t ** dico, char * treeString)
     stack_t * stack = createStack(50);
 
     node_t * currentNode = *dico;
+    node_t * nextNode = NULL;
 
     int index = 0;
 
@@ -31,24 +32,33 @@ void buildTree(node_t ** dico, char * treeString)
         {
             index++; /* Car suivant */
 
+			printf("openPar %c \n", treeString[index]);
+			
             /* addChild */
-            addChild(currentNode, treeString[index]);
+            nextNode = addChild(currentNode, treeString[index]);
 
             /* empiler */
             pushStack(stack, currentNode);
+            
+            /* change current */
+            currentNode = nextNode;
         }
         else if (isClosedParanthese(treeString[index]))
         {
-
+			index++;
+			
+			printf("closedPar %c \n", treeString[index]);
+			
             /* depiler */
             currentNode = popStack(stack);
+            printf("depil %c\n", currentNode->item);
 
             if (! isClosedParanthese(treeString[index]))
             {
-                index++;
+                printf("closedPar2 %c \n", treeString[index]);
 
                 /* addSibling */
-                addSibling(currentNode, treeString[index]);
+                currentNode = addSibling(currentNode, treeString[index]);
             }
         }
         else if (isComma(treeString[index]))
@@ -56,7 +66,7 @@ void buildTree(node_t ** dico, char * treeString)
             index++;
 
             /* addSibling */
-            addSibling(currentNode, treeString[index]);
+            currentNode = addSibling(currentNode, treeString[index]);
         }
 
         index++;
