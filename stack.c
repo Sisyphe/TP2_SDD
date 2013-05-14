@@ -1,6 +1,6 @@
 /**
  * @file stack.c
- * 
+ *
  * @author Gerald lelong / Noel Martignoni
  * @date 2013-04-16
  *
@@ -84,6 +84,6 @@ void printStack(stack_t stack)
 
     for(i=0;i<=stack.topIndex;++i)
     {
-        printf("Item %d: %d\n",i,*(stack.head+i));
+        printf("Item %d: %c\n",i,(*(stack.head+i))->item);
     }
 }

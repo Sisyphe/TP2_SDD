@@ -1,12 +1,12 @@
 /**
- * @author Gerald Lelong / Noel Martignoni
- * @date 2013-04-16
- *
- * @file tree.c
- * @brief fichier d'entete de gestion des arbres
- *
- */
- 
+* @author Gerald Lelong / Noel Martignoni
+* @date 2013-04-16
+*
+* @file tree.c
+* @brief fichier d'entete de gestion des arbres
+*
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -18,79 +18,79 @@
 
 void buildTree(node_t ** dico, char * treeString)
 {
-	stack_t * stack = createStack(50);
-	
-	node_t * currentNode = *dico;
-	
-	int index = 0;
-	
-	while (treeString[index] != '\0')
-	{		
-		
-		if (isOpenedParanthese(treeString[index]))
-		{
-			index++; /* Car suivant */
-			
-			/* addChild */			
-			addChild(currentNode, treeString[index]);
-			
-			/* empiler */
-			pushStack(stack, currentNode);
-		}
-		else if (isClosedParanthese(treeString[index]))
-		{
-			
-			/* depiler */
-			currentNode = popStack(stack);
-			
-			if (! isClosedParanthese(treeString[index]))
-			{
-				index++;
-				
-				/* addSibling */
-				addSibling(currentNode, treeString[index]);
-			}
-		}
-		else if (isComma(treeString[index]))
-		{
-			index++;
-	
-			/* addSibling */
-			addSibling(currentNode, treeString[index]);
-		}
+    stack_t * stack = createStack(50);
 
-		index++;
-		
-	}
+    node_t * currentNode = *dico;
+
+    int index = 0;
+
+    while (treeString[index] != '\0')
+    {
+
+        if (isOpenedParanthese(treeString[index]))
+        {
+            index++; /* Car suivant */
+
+            /* addChild */
+            addChild(currentNode, treeString[index]);
+
+            /* empiler */
+            pushStack(stack, currentNode);
+        }
+        else if (isClosedParanthese(treeString[index]))
+        {
+
+            /* depiler */
+            currentNode = popStack(stack);
+
+            if (! isClosedParanthese(treeString[index]))
+            {
+                index++;
+
+                /* addSibling */
+                addSibling(currentNode, treeString[index]);
+            }
+        }
+        else if (isComma(treeString[index]))
+        {
+            index++;
+
+            /* addSibling */
+            addSibling(currentNode, treeString[index]);
+        }
+
+        index++;
+
+    }
 }
 
 int isOpenedParanthese(char car)
 {
-	return car == '(';
+    return car == '(';
 }
 
 int isClosedParanthese(char car)
 {
-	return car == ')';
+    return car == ')';
 }
 
 int isComma(char car)
 {
-	return car == ',';
+    return car == ',';
 }
 
 void insertWord(char * word)
 {
-	unsigned int index = 0;
-	unsigned int wordSize = strlen(word);
-	
-	while (index < wordSize)
-	{
-		printf("%c\n", word[index]);
-		index++;
-	}
-	
-	
+    unsigned int index = 0;
+    unsigned int wordSize = strlen(word);
+
+    while (index < wordSize)
+    {
+        printf("%c\n", word[index]);
+        index++;
+    }
+
+
 }
 
 node_t * createNode()
@@ -120,33 +120,29 @@ node_t * initNode(tree_item_t item)
     return node;
 }
 
-int addChild(node_t * node, tree_item_t item)
+node_t * addChild(node_t * node, tree_item_t item)
 {
-    int exit;
+    node_t * new_child=0;
 
     if(node)
     {
         if(node->child)
         {
-            addSibling(node->child, item);
+            new_child = addSibling(node->child, item);
         }
         else
         {
-            node_t * new_child = initNode(item);
+            new_child = initNode(item);
             node->child = new_child;
         }
-
-        exit = 1;
     }
-    else exit = 0;
 
-    return exit;
+    return new_child;
 }
 
-int addSibling(node_t * node, tree_item_t item)
+node_t * addSibling(node_t * node, tree_item_t item)
 {
-    int exit;
-    node_t * new_sibling;
+    node_t * new_sibling = 0;
     node_t * sibling = node;
 
     if(node)
@@ -159,12 +155,9 @@ int addSibling(node_t * node, tree_item_t item)
         }
 
         sibling->sibling = new_sibling;
-
-        exit = 1;
     }
-    else exit = 0;
 
-    return exit;
+    return new_sibling;
 }
 
 void printTree(node_t * node)

@@ -1,6 +1,6 @@
 /**
  * @file stack.h
- * 
+ *
  * @author Gerald lelong / Noel Martignoni
  * @date 2013-04-16
  *
@@ -13,12 +13,13 @@
 #define STACK_H
 
 #include <stdlib.h>
+#include "tree.h"
 #include "tools.h"
 
 /**
  * @brief Definit le type d'element que la pile doit stocker.
  */
-typedef int stack_item_t;
+typedef node_t* stack_item_t;
 
 /**
  * @brief
@@ -27,7 +28,7 @@ typedef int stack_item_t;
 typedef struct
 {
     stack_item_t * head; /*!< Pointeur sur le premier element de la liste contigue de donnees */
-    size_t capacity;  /*!< Le nombre maximum d'elements que peut contenir la pile */ 
+    size_t capacity;  /*!< Le nombre maximum d'elements que peut contenir la pile */
     int topIndex; /*!< Indice du dernier element dans la liste contigue (ou -1 si la liste est vide) */
 } stack_t;
 

@@ -27,31 +27,31 @@ typedef struct node
 
 /**
  * @brief construit un arbre a partir d'une chaine
- * @return 
+ * @return
  */
 void buildTree();
 
 /**
- * @brief 
- * @return 
+ * @brief
+ * @return
  */
 int isOpenedParanthese(char car);
 
 /**
- * @brief 
- * @return 
+ * @brief
+ * @return
  */
 int isClosedParanthese(char car);
 
 /**
- * @brief 
- * @return 
+ * @brief
+ * @return
  */
 int isComma(char car);
 
 /**
- * @brief 
- * @return 
+ * @brief
+ * @return
  */
 void insertWord(char * word);
 
@@ -72,18 +72,22 @@ node_t * initNode(tree_item_t item);
  * @brief Ajoute un fils 'item' au noeud 'Node'.
  * @param node le noeud auquel on veut ajouter un fils
  * @param item l'objet à ajouter à l'arbre
- * @return un code d'erreur de type errorCst
+ * @return le noeud cree
  */
-int addChild(node_t * node, tree_item_t item);
+node_t* addChild(node_t * node, tree_item_t item);
 
 /**
  * @brief Ajoute un frere 'item' au noeud 'Node'.
  * @param node le noeud auquel on veut ajouter un frere
  * @param item l'objet à ajouter à l'arbre
- * @return un code d'erreur de type errorCst
+ * @return le noeud cree
  */
-int addSibling(node_t * node, tree_item_t item);
+node_t* addSibling(node_t * node, tree_item_t item);
 
+/**
+ * @brief Affiche le contenu de l'arbre sous le noeud 'node'
+ * @param node le noeud à partir duquel on veut afficher l'arbre
+ */
 void printTree(node_t * node);
 
 #endif
