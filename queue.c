@@ -135,7 +135,7 @@ void printQueue(queue_t * queue)
         printf("File : |");
         while (nbElementNotPrinted > 0)
         {
-            printf(" %d (%d) |", queue->items[index], index);
+            printf(" %d (%d) |", queue->items[index]->item, index);
             
             if ((index+1) % queue->size == 0)
             {

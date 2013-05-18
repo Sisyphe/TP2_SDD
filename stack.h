@@ -30,33 +30,33 @@ typedef struct
     stack_item_t * head; /*!< Pointeur sur le premier element de la liste contigue de donnees */
     size_t capacity;  /*!< Le nombre maximum d'elements que peut contenir la pile */
     int topIndex; /*!< Indice du dernier element dans la liste contigue (ou -1 si la liste est vide) */
-} stack_t;
+} stack_tt;
 
 /**
  * @brief Alloue une liste contigue et initialise les attributs d'une nouvelle pile.
  * @param capacity La taille de la liste contigue allouee donc le nombre maximum d'objets que peut contenir la pile
  * @return Un pointeur vers la structure de pile creee
  */
-stack_t * createStack(size_t capacity);
+stack_tt * createStack(size_t capacity);
 
 /**
  * @param stack La pile sur laquelle on s'interroge
  * @return Un booleen valant vrai si la pile est vide, faux sinon
  */
-int isStackEmpty(stack_t stack);
+int isStackEmpty(stack_tt stack);
 
 /**
  * @param stack La pile sur laquelle on s'interroge
  * @return Un booleen valant vrai si la pile est pleine, faux sinon
  */
-int isStackFull(stack_t stack);
+int isStackFull(stack_tt stack);
 
 /**
  * @brief Retourne et supprime de la pile l'element en haut du tas.
  * @param stack La pile ou recuperer et supprimer l'element
  * @return L'element en haut de la pile
  */
-stack_item_t popStack(stack_t * stack);
+stack_item_t popStack(stack_tt * stack);
 
 /**
  * @brief Pose un element en haut de la pile
@@ -64,13 +64,13 @@ stack_item_t popStack(stack_t * stack);
  * @param item L'element a inserer
  * @return Un code d'erreur valant SUCCESS si l'element a bien ete insere, FAIL sinon
  */
-int pushStack(stack_t * stack, stack_item_t item);
+int pushStack(stack_tt * stack, stack_item_t item);
 
 /**
  * @brief Affiche la taille, la capacite, et le contenu de la pile sur la sortie standard.
  * @details Le type d'objet contenu dans la pile doit necessairement être 'int'.
  * @param stack La pile a afficher
  */
-void printStack(stack_t stack);
+void printStack(stack_tt stack);
 
 #endif

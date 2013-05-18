@@ -12,9 +12,9 @@
 #include "stack.h"
 #include <stdio.h>
 
-stack_t * createStack(size_t capacity)
+stack_tt * createStack(size_t capacity)
 {
-    stack_t * stack=malloc(sizeof(stack_t));
+    stack_tt * stack=malloc(sizeof(stack_t));
 
     if(stack)
     {
@@ -34,30 +34,30 @@ stack_t * createStack(size_t capacity)
     return stack;
 }
 
-int isStackEmpty(stack_t stack)
+int isStackEmpty(stack_tt stack)
 {
     return stack.topIndex==-1;
 }
 
-int isStackFull(stack_t stack)
+int isStackFull(stack_tt stack)
 {
     return stack.topIndex+1>=(int)stack.capacity;
 }
 
-stack_item_t popStack(stack_t * stack)
+stack_item_t popStack(stack_tt * stack)
 {
-    stack_item_t item;
+    stack_item_t * item = NULL;
 
     if(!isStackEmpty(*stack))
     {
-        item=*(stack->head+stack->topIndex);
+        item = stack->head+stack->topIndex;
         --stack->topIndex;
     }
 
-    return item;
+    return *item;
 }
 
-int pushStack(stack_t * stack, stack_item_t item)
+int pushStack(stack_tt * stack, stack_item_t item)
 {
     int exit;
 
@@ -76,7 +76,7 @@ int pushStack(stack_t * stack, stack_item_t item)
     return exit;
 }
 
-void printStack(stack_t stack)
+void printStack(stack_tt stack)
 {
     int i;
 

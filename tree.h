@@ -29,13 +29,7 @@ typedef struct node
  * @brief construit un arbre a partir d'une chaine
  * @return
  */
-void buildTree();
-
-/**
- * @brief
- * @return
- */
-int isOpenedParanthese(char car);
+node_t * buildTree(char * treeString);
 
 /**
  * @brief
@@ -47,14 +41,24 @@ int isClosedParanthese(char car);
  * @brief
  * @return
  */
-int isComma(char car);
+void insertWord(node_t ** dico, char * word);
 
 /**
  * @brief
  * @return
  */
-void insertWord(char * word);
+int characterAreInferior(char one, char two);
 
+/**
+ * @brief
+ * @return
+ */
+int characterAreSuperior(char one, char two);
+
+/**
+ * @brief
+ * @return
+ */
 void printDictionnary(node_t * dico);
 
 /**
