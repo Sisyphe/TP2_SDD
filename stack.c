@@ -14,7 +14,7 @@
 
 stack_tt * createStack(size_t capacity)
 {
-    stack_tt * stack=malloc(sizeof(stack_t));
+    stack_tt * stack=malloc(sizeof(stack_tt));
 
     if(stack)
     {
