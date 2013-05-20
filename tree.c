@@ -10,73 +10,51 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 #include "tree.h"
 #include "tools.h"
 #include "queue.h"
 #include "stack.h"
 
-void buildTree(node_t ** dico, char * treeString)
+node_t * buildTree(char * treeString)
 {
-    stack_t * stack = createStack(50);
+    stack_tt * stack = createStack(50);
 
-    node_t * currentNode = *dico;
+    node_t * dico = createNode();
+    node_t * currentNode = dico;
     node_t * nextNode = NULL;
-
+    
+    char currentCharacter;
     int index = 0;
 
     while (treeString[index] != '\0')
-    {
-
-        if (isOpenedParanthese(treeString[index]))
-        {
-            index++; /* Car suivant */
-
-			printf("openPar %c \n", treeString[index]);
-			
-            /* addChild */
-            nextNode = addChild(currentNode, treeString[index]);
-
-            /* empiler */
-            pushStack(stack, currentNode);
-            
-            /* change current */
-            currentNode = nextNode;
-        }
-        else if (isClosedParanthese(treeString[index]))
-        {
-			index++;
-			
-			printf("closedPar %c \n", treeString[index]);
-			
-            /* depiler */
-            currentNode = popStack(stack);
-            printf("depil %c\n", currentNode->item);
-
-            if (! isClosedParanthese(treeString[index]))
-            {
-                printf("closedPar2 %c \n", treeString[index]);
-
-                /* addSibling */
-                currentNode = addSibling(currentNode, treeString[index]);
-            }
-        }
-        else if (isComma(treeString[index]))
-        {
-            index++;
-
-            /* addSibling */
-            currentNode = addSibling(currentNode, treeString[index]);
-        }
-
+    {        
+        currentCharacter = treeString[index];
         index++;
-
+        
+        switch (currentCharacter)
+        {
+            case '(':
+                nextNode = addChild(currentNode, treeString[index]);
+                pushStack(stack, currentNode);
+                currentNode = nextNode;
+                break;
+                
+            case ')':
+                currentNode = popStack(stack);
+                if (! isClosedParanthese(treeString[index]))
+                    currentNode = addSibling(currentNode, treeString[index]);
+                break;
+                
+            case ',':
+                currentNode = addSibling(currentNode, treeString[index]);
+                break;
+        }
+        index++;
     }
-}
-
-int isOpenedParanthese(char car)
-{
-    return car == '(';
+    
+    return dico;
 }
 
 int isClosedParanthese(char car)
@@ -84,28 +62,70 @@ int isClosedParanthese(char car)
     return car == ')';
 }
 
-int isComma(char car)
-{
-    return car == ',';
-}
-
-void insertWord(char * word)
+void insertWord(node_t ** dico, char * word)
 {
     unsigned int index = 0;
-    unsigned int wordSize = strlen(word);
+    size_t wordSize = strlen(word);
+    unsigned int lastIndex = (unsigned int)wordSize-1;
+    
+    char currentCharacter;
+    
+    node_t ** prevNode = &(*dico)->child;
+    node_t * currentNode = *prevNode;
+   
+    
+    printf("EXEC insertWord \n\n");
 
     while (index < wordSize)
     {
-        printf("%c\n", word[index]);
-        index++;
+        currentCharacter = word[index];
+        
+        /* rechercher la lettre dans dico */
+        while (currentNode != NULL && characterAreInferior(currentNode->item, currentCharacter))
+        {
+            printf("%d - %d\n", currentNode->item, currentCharacter);
+            prevNode = &currentNode->sibling;
+            currentNode = *prevNode;
+        }
+        
+        /* si il n'existe pas on le creee */
+        if (currentNode == NULL || characterAreSuperior(currentNode->item, currentCharacter))
+        {
+            node_t * newNode = initNode(currentCharacter);
+            newNode->sibling = currentNode;
+            newNode->child = NULL;
+            *prevNode = newNode;
+        }
+        
+        if (index == lastIndex)
+        {
+            printf("last %c\n", (*prevNode)->item);
+            (*prevNode)->item = toupper((*prevNode)->item);
+        }
+        
+        /* on rentre dedans */
+        prevNode = &(*prevNode)->child;
+        currentNode = *prevNode;
+        
+        index++; /* passe a la lettre suivante */
     }
-
-
 }
+
+int characterAreInferior(char one, char two)
+{
+    return toupper(one) < toupper(two);
+}
+
+int characterAreSuperior(char one, char two)
+{
+    return toupper(one) > toupper(two);
+}
+
+
 
 void printDictionnary(node_t * dico)
 {
-    stack_t * stack = createStack(100);
+    stack_tt * stack = createStack(100);
     node_t * node = dico->child;
     int i;
 
@@ -119,7 +139,7 @@ void printDictionnary(node_t * dico)
         }
         else
         {
-            for(i = 0; i < stack->top; ++i)
+            for(i = 0; i < stack->topIndex; ++i)
             {
                 //TODO print stack content
             }
