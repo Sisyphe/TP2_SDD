@@ -125,25 +125,37 @@ int characterAreSuperior(char one, char two)
 
 void printDictionnary(node_t * dico)
 {
-    stack_tt * stack = createStack(100);
-    node_t * node = dico->child;
     int i;
+    int exit = 0;
+    stack_tt * stack = createStack(100);
+    node_t * node = dico;
 
-    while(node)
+    printf("\n>>> PRINT DICO <<<\n\n");
+
+    while(!exit)
     {
-        pushStack(stack, node);
-
-        if(node->child)
+        while(node)
         {
+            pushStack(stack, node);
             node = node->child;
         }
-        else
+
+        if(!isStackEmpty(*stack))
         {
-            for(i = 0; i < stack->topIndex; ++i)
+            node = popStack(stack);
+
+            if(!node->child)
             {
-                //TODO print stack content
+                for(i = 0; i <= stack->topIndex; ++i)
+                {
+                    printf("%c", stack->head[i]->item);
+                }
+                printf("%c\n", node->item);
             }
+
+            node = node->sibling;
         }
+        else exit = 1;
     }
 }
 
