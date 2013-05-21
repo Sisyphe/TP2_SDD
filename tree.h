@@ -32,36 +32,6 @@ typedef struct node
 node_t * buildTree(char * treeString);
 
 /**
- * @brief
- * @return
- */
-int isClosedParanthese(char car);
-
-/**
- * @brief
- * @return
- */
-void insertWord(node_t ** dico, char * word);
-
-/**
- * @brief
- * @return
- */
-int characterAreInferior(char one, char two);
-
-/**
- * @brief
- * @return
- */
-int characterAreSuperior(char one, char two);
-
-/**
- * @brief
- * @return
- */
-void printDictionnary(node_t * dico);
-
-/**
  * @brief Initialise une structure de noeud.
  * @return le noeud cree
  */
