@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * @file dictionnary.h
  *
