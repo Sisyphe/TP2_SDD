@@ -27,7 +27,8 @@ typedef struct node
 
 /**
  * @brief construit un arbre a partir d'une chaine
- * @return
+ * @param treeString la chaine representant l'arbre
+ * @return l'arbre cree a partir la chaine
  */
 node_t * buildTree(char * treeString);
 

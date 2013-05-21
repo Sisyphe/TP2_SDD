@@ -1,3 +1,13 @@
+/**
+ * @file dictionnary.c
+ *
+ * @author Gerald lelong / Noel Martignoni
+ * @date 2013-05-21
+ *
+ * @brief
+ * Implémente les fonctions en rapport avec les dictionnaires
+*/
+
 #include "dictionnary.h"
 
 #include <stdlib.h>

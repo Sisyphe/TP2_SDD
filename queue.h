@@ -17,8 +17,8 @@
  */
 typedef node_t* queueItem_t;
 
-/*
- * @typedef Structure de la file
+/**
+ * @brief typedef Structure de la file
  */
 typedef struct
 {
@@ -29,33 +29,33 @@ typedef struct
     unsigned int nbElement;
 } queue_t;
 
-/*
- * Fonction de creation de file
+/**
+ * @brief Fonction de creation de file
  */
 queue_t * createQueue(int size);
 
-/*
- * Fonction pour emfiler un element
+/**
+ * @brief Fonction pour emfiler un element
  */
 int pushQueue(queue_t * queue, queueItem_t item);
 
-/*
- * Fonction pour defiler un element
+/**
+ * @brief Fonction pour defiler un element
  */
 queueItem_t * popQueue(queue_t * queue);
 
-/*
- * Fonction pour verifier si la file est vide
+/**
+ * @brief Fonction pour verifier si la file est vide
  */
 int isQueueEmpty(queue_t * queue);
 
-/*
- * Fonction pour verifier si la file est pleine
+/**
+ * @brief Fonction pour verifier si la file est pleine
  */
 int isQueueFull(queue_t * queue);
 
-/*
- * Fonction pour afficher une pile
+/**
+ * @brief Fonction pour afficher une pile
  */
 void printQueue(queue_t * queue);
 
