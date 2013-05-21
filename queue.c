@@ -47,7 +47,7 @@ int pushQueue(queue_t * queue, queueItem_t item)
 {
 	int error = 1;
 	
-	if (! isFull(queue))
+	if (! isQueueFull(queue))
 	{
 		queue->items[queue->indexEnd] = item;
         
@@ -74,7 +74,7 @@ queueItem_t * popQueue(queue_t * queue)
 {	
 	queueItem_t * item = NULL;
 	
-	if (! isEmpty(queue))
+	if (! isQueueEmpty(queue))
 	{
 		item = &queue->items[queue->indexStart];
 		
@@ -96,7 +96,7 @@ queueItem_t * popQueue(queue_t * queue)
 /*
  * Fonction pour verifier si la file est vide
  */
-int isEmpty(queue_t * queue)
+int isQueueEmpty(queue_t * queue)
 {
 	return queue->nbElement == 0;
 }
@@ -104,7 +104,7 @@ int isEmpty(queue_t * queue)
 /*
  * Fonction pour verifier si la file est pleine
  */
-int isFull(queue_t * queue)
+int isQueueFull(queue_t * queue)
 {
 	return queue->nbElement == queue->size;
 }
@@ -123,10 +123,10 @@ void printQueue(queue_t * queue)
     printf("indexEnd : %d\n", queue->indexEnd);
     printf("size : %d\n", queue->size);
     printf("nbElement : %d\n", queue->nbElement);
-    printf("isFull : %s\n", (isFull(queue)?"TRUE":"FALSE"));
+    printf("isQueueFull : %s\n", (isQueueFull(queue)?"TRUE":"FALSE"));
     printf("\n");
     
-    if (isEmpty(queue))
+    if (isQueueEmpty(queue))
     {
         printf("File vide\n");
     }

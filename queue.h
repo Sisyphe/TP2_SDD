@@ -47,12 +47,12 @@ queueItem_t * popQueue(queue_t * queue);
 /*
  * Fonction pour verifier si la file est vide
  */
-int isEmpty(queue_t * queue);
+int isQueueEmpty(queue_t * queue);
 
 /*
  * Fonction pour verifier si la file est pleine
  */
-int isFull(queue_t * queue);
+int isQueueFull(queue_t * queue);
 
 /*
  * Fonction pour afficher une pile
