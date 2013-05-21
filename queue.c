@@ -151,3 +151,9 @@ void printQueue(queue_t * queue)
         printf("\n");
     }
 }
+
+void freeQueue(queue_t * queue)
+{
+    free(queue->items);
+    free(queue);
+}

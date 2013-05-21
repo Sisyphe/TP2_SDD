@@ -52,6 +52,8 @@ node_t * buildTree(char * treeString)
         index++;
     }
     
+    freeStack(stack);
+    
     return tree;
 }
 
@@ -155,4 +157,33 @@ void printTree(node_t * node)
     }
 
     printf("\n");
+    
+    freeQueue(queue);
+}
+
+void freeTree(node_t * node)
+{
+    int exit = 0;
+    stack_tt * stack = createStack(100);
+    node_t * tmp_node;
+
+    while(!exit)
+    {
+        while(node)
+        {
+            pushStack(stack, node);
+            node = node->child;
+        }
+
+        if(!isStackEmpty(*stack))
+        {
+            node = popStack(stack);
+            tmp_node = node;
+            node = node->sibling;
+            free(tmp_node);
+        }
+        else exit = 1;
+    }
+    
+    freeStack(stack);
 }

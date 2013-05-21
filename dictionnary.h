@@ -14,12 +14,12 @@
 #include "tree.h"
 
 /**
- * @brief Type representant un dictionnaire
+ * @brief type representant un dictionnaire
  */
 typedef node_t* Dict;
 
 /**
- * @brief Initialise un dictionnaire pret à être utilise
+ * @brief initialise un dictionnaire pret à être utilise
  * @return le dictionnaire cree
  */
 Dict createDict();
@@ -48,5 +48,11 @@ int characterAreSuperior(char one, char two);
  * @param dict le dictionnaire a afficher
  */
 void printDict(Dict dict);
+
+/**
+ * @brief libere la memoire allouee par le contenu d'un dictionnaire
+ * @param dict le dictionnaire a supprimer
+ */
+void freeDict(Dict dict);
 
 #endif

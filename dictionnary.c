@@ -112,4 +112,11 @@ void printDict(Dict dict)
         }
         else exit = 1;
     }
+    
+    freeStack(stack);
+}
+
+void freeDict(Dict dict)
+{
+    freeTree(dict);
 }

@@ -67,4 +67,10 @@ node_t* addSibling(node_t * node, tree_item_t item);
  */
 void printTree(node_t * node);
 
+/**
+ * @brief Libere la memoire allouee pour le noeud et ses descendant
+ * @param node le noeud à partir duquel on veut supprimer l'arborescence
+ */
+void freeTree(node_t * node);
+
 #endif

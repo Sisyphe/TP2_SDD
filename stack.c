@@ -14,11 +14,11 @@
 
 stack_tt * createStack(size_t capacity)
 {
-    stack_tt * stack=malloc(sizeof(stack_tt));
+    stack_tt * stack = malloc(sizeof(stack_tt));
 
     if(stack)
     {
-        stack->head=malloc(sizeof(stack_item_t)*capacity);
+        stack->head = malloc(sizeof(stack_item_t)*capacity);
 
         if(stack->head)
         {
@@ -86,4 +86,10 @@ void printStack(stack_tt stack)
     {
         printf("Item %d: %c\n",i,(*(stack.head+i))->item);
     }
+}
+
+void freeStack(stack_tt * stack)
+{
+    free(stack->head);
+    free(stack);
 }

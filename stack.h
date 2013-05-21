@@ -73,4 +73,10 @@ int pushStack(stack_tt * stack, stack_item_t item);
  */
 void printStack(stack_tt stack);
 
+/**
+ * @brief Libere la mémoire allouee lors de la creation de la pile
+ * @param stack La pile a supprimer
+ */
+void freeStack(stack_tt * stack);
+
 #endif

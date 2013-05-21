@@ -59,4 +59,10 @@ int isQueueFull(queue_t * queue);
  */
 void printQueue(queue_t * queue);
 
+/**
+ * @brief Libere la mémoire allouee lors de la creation de la file
+ * @param queue La file a supprimer
+ */
+void freeQueue(queue_t * queue);
+
 #endif
