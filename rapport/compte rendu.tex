@@ -1,0 +1,208 @@
+\documentclass[12pt]{report}
+%\documentclass[twoside, openright, 12pt]{report}
+ 
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry} % definition des marges
+
+\usepackage[applemac]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel} 
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{titlepic}
+\usepackage{titlesec, blindtext, color}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{minitoc}
+\usepackage{perpage}
+\usepackage{setspace}
+\setstretch{1.5} % interligne de 1.5
+
+%paragraph options
+\setlength{\parindent}{15pt}
+\setlength{\parskip}{6pt}
+
+% enleve la mention chapitre
+\titleformat{\chapter}[hang]{\bf\huge}{\thechapter}{2pc}{}
+
+% Ligne orpheline ou veuve
+\widowpenalty=10000 % empeche au maximum la coupure avant la derniere ligne 
+\clubpenalty=10000 % empeche au maximum la coupure apres la premiere ligne 
+\raggedbottom
+
+\lstset{language=C, basicstyle=\scriptsize, numbers=left, numberstyle=\scriptsize, numbersep=12pt} 
+
+\def\maketitle{
+\thispagestyle{empty}
+
+\noindent 
+  Gérald Lelong \\
+  Noël Martignoni \\
+  G31 \\
+ 
+  \vskip 6cm
+  
+  \begin{center}\leavevmode
+  \Large  \textbf{Structure de donnée} \\
+  \rule{9cm}{1pt} \\
+  \Huge Compte rendu TP2 \\
+  \end{center}
+      
+  \cleardoublepage
+  }  
+
+% Le document --------------------------------------------------------------------------------------------------------
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\chapter{Présentation du TP}
+
+\section{Description}
+
+L'objectif de ce TP et de créer une structure de donnée permettant de stocker un dictionnaire sous la forme d'un arbre.
+
+Le programme prend en argument un lien vers un fichier qui contient un arbre sous forme parenthésé.
+
+Ensuite un menu permet d'insérer un mot dans le dictionnaire créé, d'afficher le dictionnaire ou de quitter le programme.
+
+\section{La structure de données}
+
+Les données sont composées de liste chainées organisées en lien vertical lien horizontal. Chaque élément contient :
+\begin{itemize}
+\item une lettre (char)
+\item un pointeur sur son frère
+\item un pointeur sur son fils
+\end{itemize}
+
+Les algorithmes de création et de gestion des arbres nécessite l'utilisation de files et de piles. C'est pourquoi nous avons créé deux autres structures de données et les algorithmes qui permettent de les utiliser : une structure de gestion de pile et une structure de gestion de file.
+
+\section{Organisation des ..}
+
+\begin{description}
+\item[main.c] Programme principal
+\item[queue.h .c] Contient les fonctions de manipulation de \textit{files}
+\item[stack.h .c] Contient les fonctions de manipulation de \textit{piles}
+\item[tree.h .c] Contient les fonctions de manipulation d'\textit{arbres}
+\item[dictionnary.h .c] Contient les fonctions de manipulation de \textit{dictionnaires}
+\item[tools.c] Contient des fonctions utilitaires
+\end{description}
+
+\chapter{Programme C}
+
+\section{main.c}
+
+\lstinputlisting[language=C]{../main.c}
+
+\section{queue.h}
+
+\lstinputlisting[language=C]{../queue.h}
+
+\section{queue.c}
+
+\lstinputlisting[language=C]{../queue.c}
+
+\section{stack.h}
+
+\lstinputlisting[language=C]{../stack.h}
+
+\section{stack.c}
+
+\lstinputlisting[language=C]{../stack.c}
+
+\section{tree.h}
+
+\lstinputlisting[language=C]{../tree.h}
+
+\section{tree.c}
+
+\lstinputlisting[language=C]{../tree.c}
+
+\section{dictionnary.h}
+
+\lstinputlisting[language=C]{../dictionnary.h}
+
+\section{dictionnary.c}
+
+\lstinputlisting[language=C]{../dictionnary.c}
+
+\section{tools.h}
+
+\lstinputlisting[language=C]{../tools.h}
+
+
+
+\chapter{Compilation et tests}
+
+\section{Makefile}
+
+\lstinputlisting[language=make]{../Makefile}
+
+\section{Jeux de test}
+
+\subsection{Les files}
+
+\subsubsection{Enfilage dans une file vide}
+
+\subsubsection{Défilage d'une file vide}
+
+\subsubsection{Enfilage dans une file pleine}
+
+\subsubsection{Gestion des indices}
+
+
+
+\subsection{Les piles}
+
+\subsubsection{Empilement dans une pile vide}
+
+\subsubsection{Dépilement dans une file vide}
+
+\subsubsection{Empilement dans une file pleine}
+
+
+
+\subsection{Les dictionnaires}
+
+\subsubsection{Création d'un arbre vide (buildtree)}
+
+\subsubsection{Création d'un arbre simple (buildtree)}
+
+\subsubsection{Insertion simple (insertWord)}
+
+\subsubsection{Insertion mot dans arbre vide (insertWord)}
+
+\subsubsection{Insertion mot déjà présent dans l'arbre (insertWord)}
+
+\subsubsection{Insertion mot  non présent dans l'arbre mais dont les lettres sont déjà présentes (insertWord)}
+
+Exemple insertion du mot \textit{gris} dans un arbre qui contient déjà le mot \textit{grison}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
