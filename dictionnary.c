@@ -5,7 +5,7 @@
  * @date 2013-05-21
  *
  * @brief
- * Implémente les fonctions en rapport avec les dictionnaires
+ * Implemente les fonctions en rapport avec les dictionnaires
 */
 
 #include "dictionnary.h"
@@ -19,9 +19,14 @@
 #include "tools.h"
 #include "stack.h"
 
-Dict createDict()
+Dict createDict(char * string)
 {
-    return initNode(' ');
+    return buildTree(string);
+}
+
+Dict createEmptyDict()
+{
+    return createNode();
 }
 
 void insertWord(Dict * dico, char * word)
