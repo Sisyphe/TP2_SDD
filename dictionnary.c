@@ -108,7 +108,7 @@ void printDict(Dict dict)
             {
                 for(i = 1; i <= stack->topIndex; ++i)
                 {
-                    printf("%c", stack->head[i]->item);
+                    printf("%c", tolower(stack->head[i]->item));
                 }
                 printf("%c\n", tolower(node->item));
             }
