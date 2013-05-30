@@ -19,9 +19,14 @@
 #include "tools.h"
 #include "stack.h"
 
-Dict createDict()
+Dict createDict(char * string)
 {
-    return initNode(' ');
+    return buildTree(string);
+}
+
+Dict createEmptyDict()
+{
+    return createNode();
 }
 
 void insertWord(Dict * dico, char * word)
@@ -103,7 +108,7 @@ void printDict(Dict dict)
             {
                 for(i = 1; i <= stack->topIndex; ++i)
                 {
-                    printf("%c", stack->head[i]->item);
+                    printf("%c", tolower(stack->head[i]->item));
                 }
                 printf("%c\n", tolower(node->item));
             }

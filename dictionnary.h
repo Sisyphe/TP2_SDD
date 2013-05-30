@@ -22,7 +22,13 @@ typedef node_t* Dict;
  * @brief initialise un dictionnaire pret a etre utilise
  * @return le dictionnaire cree
  */
-Dict createDict();
+Dict createDict(char * string);
+
+/**
+ * @brief initialise un dictionnaire vide pret a etre utilise
+ * @return le dictionnaire cree
+ */
+Dict createEmptyDict();
 
 /**
  * @brief insere un mot dans un dictionnaire
