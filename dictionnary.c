@@ -5,7 +5,7 @@
  * @date 2013-05-21
  *
  * @brief
- * Implémente les fonctions en rapport avec les dictionnaires
+ * Implemente les fonctions en rapport avec les dictionnaires
 */
 
 #include "dictionnary.h"
