@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     
     Dict dictionnary;
     int loop = 1;
-    char choise;
+    char choice;
     
     if (argc == 2)
     {
@@ -44,9 +44,9 @@ int main(int argc, char *argv[])
         printf("2 - Afficher dictionnaire \n");
         printf("3 - Quitter \n\n");
         printf("Choix : \n");
-        scanf("%c", &choise);
+        scanf("%c", &choice);
         
-        switch (choise)
+        switch (choice)
         {
             case '1':
                 printf("\nAjouter mot\n\n");
