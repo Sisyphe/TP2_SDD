@@ -1,0 +1,15 @@
+#include "dictionnary.h"
+
+int main()
+{
+    Dict dict = createEmptyDict();
+    insertWord(dict, "artiste");
+    printDict(dict);
+    freeDict(dict);
+
+    return 0;
+}
+
+>>> DICTIONNARY <<<
+
+artiste

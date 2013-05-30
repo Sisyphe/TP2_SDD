@@ -1,0 +1,13 @@
+#include "dictionnary.h"
+
+int main()
+{
+    Dict dict = createDict("");
+    printDict(dict);
+    freeDict(dict);
+
+    return 0;
+}
+
+>>> DICTIONNARY <<<
+

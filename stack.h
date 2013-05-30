@@ -19,7 +19,7 @@
 /**
  * @brief Definit le type d'element que la pile doit stocker.
  */
-typedef node_t* stack_item_t;
+typedef int stack_item_t;
 
 /**
  * @brief
@@ -56,7 +56,7 @@ int isStackFull(stack_t stack);
  * @param stack La pile ou recuperer et supprimer l'element
  * @return L'element en haut de la pile
  */
-stack_item_t popStack(stack_t * stack);
+stack_item_t * popStack(stack_t * stack);
 
 /**
  * @brief Pose un element en haut de la pile

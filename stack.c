@@ -44,7 +44,7 @@ int isStackFull(stack_t stack)
     return stack.topIndex+1>=(int)stack.capacity;
 }
 
-stack_item_t popStack(stack_t * stack)
+stack_item_t * popStack(stack_t * stack)
 {
     stack_item_t * item = NULL;
 
@@ -54,7 +54,7 @@ stack_item_t popStack(stack_t * stack)
         --stack->topIndex;
     }
 
-    return *item;
+    return item;
 }
 
 int pushStack(stack_t * stack, stack_item_t item)
@@ -84,7 +84,7 @@ void printStack(stack_t stack)
 
     for(i=0;i<=stack.topIndex;++i)
     {
-        printf("Item %d: %c\n",i,(*(stack.head+i))->item);
+        printf("Item #%d: %d\n",i+1,(*(stack.head+i)));
     }
 }
 

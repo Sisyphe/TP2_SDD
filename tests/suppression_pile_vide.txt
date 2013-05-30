@@ -1,0 +1,14 @@
+#include "stack.h"
+#include <stdio.h>
+
+int main()
+{
+    stack_t * stack = createStack(1);
+    printf("pop: %d\n", popStack(stack));
+    printStack(*stack);
+    freeStack(stack);
+    return 0;
+}
+
+pop: 0
+0 items of 0 in the stack

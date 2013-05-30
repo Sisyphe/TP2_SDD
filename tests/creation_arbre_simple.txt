@@ -1,0 +1,16 @@
+#include "dictionnary.h"
+
+int main()
+{
+    Dict dict = createDict("(a(r(b(r(E)))T(i(s(t(E))))))");
+    printDict(dict);
+    freeDict(dict);
+
+    return 0;
+}
+
+>>> DICTIONNARY <<<
+
+arbre
+art
+artiste

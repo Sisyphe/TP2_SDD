@@ -1,0 +1,21 @@
+#include "dictionnary.h"
+
+int main()
+{
+    Dict dict = createEmptyDict();
+    insertWord(dict, "grison");
+    printDict(dict);
+    insertWord(dict, "gris");
+    printDict(dict);
+    freeDict(dict);
+
+    return 0;
+}
+
+>>> DICTIONNARY <<<
+
+grison
+>>> DICTIONNARY <<<
+
+gris
+grison
