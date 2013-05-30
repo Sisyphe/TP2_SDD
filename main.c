@@ -71,5 +71,7 @@ int main(int argc, char *argv[])
         
     }
     
+    freeDict(dictionnary);
+    
     return 0;
 }
