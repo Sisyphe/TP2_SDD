@@ -84,7 +84,7 @@ void printStack(stack_t stack)
 
     for(i=0;i<=stack.topIndex;++i)
     {
-        printf("Item #%d: %d\n",i+1,(*(stack.head+i)));
+        printf("Item #%d: %d\n",i+1,(*(stack.head+i))->item);
     }
 }
 

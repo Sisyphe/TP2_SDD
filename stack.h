@@ -19,7 +19,7 @@
 /**
  * @brief Definit le type d'element que la pile doit stocker.
  */
-typedef int stack_item_t;
+typedef node_t* stack_item_t;
 
 /**
  * @brief

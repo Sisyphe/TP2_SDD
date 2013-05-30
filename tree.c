@@ -17,7 +17,7 @@
 
 node_t * buildTree(char * treeString)
 {
-    stack_tt * stack = createStack(50);
+    stack_t * stack = createStack(50);
 
     node_t * tree = createNode();
     node_t * currentNode = tree;
@@ -40,7 +40,7 @@ node_t * buildTree(char * treeString)
                 break;
                 
             case ')':
-                currentNode = popStack(stack);
+                currentNode = *popStack(stack);
                 if (treeString[index] != ')')
                     currentNode = addSibling(currentNode, treeString[index]);
                 break;
@@ -164,7 +164,7 @@ void printTree(node_t * node)
 void freeTree(node_t * node)
 {
     int exit = 0;
-    stack_tt * stack = createStack(100);
+    stack_t * stack = createStack(100);
     node_t * tmp_node;
 
     while(!exit)
@@ -177,7 +177,7 @@ void freeTree(node_t * node)
 
         if(!isStackEmpty(*stack))
         {
-            node = popStack(stack);
+            node = *popStack(stack);
             tmp_node = node;
             node = node->sibling;
             free(tmp_node);

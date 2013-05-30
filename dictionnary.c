@@ -102,7 +102,7 @@ void printDict(Dict dict)
 
         if(!isStackEmpty(*stack))
         {
-            node = popStack(stack);
+            node = *popStack(stack);
 
             if(isupper(node->item))
             {
