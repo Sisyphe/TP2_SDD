@@ -87,7 +87,7 @@ void printDict(Dict dict)
 {
     int i;
     int exit = 0;
-    stack_tt * stack = createStack(100);
+    stack_t * stack = createStack(100);
     node_t * node = dict;
 
     printf(">>> DICTIONNARY <<<\n\n");
